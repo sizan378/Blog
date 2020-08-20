@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block profile %}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="col-lg-5 mx-auto border rounded pt-4">
+            <h3 class="alert alert-light  border rounded  "> Create Your Profile </h3>
+            <form action="" method="POST" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-outline-success"> Create Author</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

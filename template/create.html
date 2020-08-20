@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block profile %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="p-4 m-4">
+            <div class="col-lg-6 col-md-6 col-sm-12 ">
+                <h3 class="alert alert-light  border rounded  "> Create Blog </h3>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button class="btn btn-outline-warning" type="submit">Submit</button>
+                 </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block profile %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5 " style="margin-left:250px;">
+        <div>
+            <div class="col-lg-12 mx-auto border rounded pt-4 ">
+                <h2 class="alert alert-light  border rounded">Please Create Your New Account</h2>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                  <button type="submit" class="btn btn-warning">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

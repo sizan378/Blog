@@ -1,0 +1,99 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block profile %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class=" col-lg-3 col-md-3 col-sm-12">
+      <div class="card" style="width: 250px; height:350px;">
+        <img src="{{ post.article_author.profile_picture.url }}" class="card-img-top" alt="...">
+          <a href="{{ p.get_author_url }}"><h2>{{ post.article_author.name }}</h2></a>
+          <h3>{{ post.article_author.email }}</h3>
+          <p> {{ post.article_author.details}}</p>
+      </div>
+    </div>
+     <div class="col-lg-8 col-md-8 col-sm-12">
+             <img src="{{ post.image.url }}" style="height:500px; width:900px;" >
+         <h3>{{ post.title }}</h3>
+         <h5>{{ post.category.name}}</h5>
+         <h5>{{ post.posted_on}}</h5>
+         <p>{{ post.body|safe}}</p>
+     </div>
+  </div>
+    <!--<a href="{% url 'blog:pdf' id=post.id %}">Save pdf </a>-->
+    <div style="margin-left:290px;">
+        <form action="" method="POST">
+            {% csrf_token %}
+             <div>
+                 {{ form.as_p }}
+             </div>
+            <button class="btn btn-outline-dark" type="submit">Comment</button>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<h3 style="margin-left:350px;">Related Post :</h3>
+<div class="container">
+        <div class="row">
+            {% for r in related %}
+                <div class="col-lg-3 col-md-3 col-sm-12 offset-lg-1 offset-md-1" style="margin-left:150px;">
+                    <div>
+                       <a href="{% url 'blog:single_post' id=r.id%}"> <img src="{{ r.image.url }}" style="height:250px; width:250px" ></a>
+                        <a href="{{ r.get_single_url }}"><h3>{{ r.title }}</h3></a>
+                        <p>{{ r.body | truncatewords:20 }}</p>
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+</div>
+<br>
+<br>
+<div class="container-fluid">
+    <h2 class="alert alert-dark  border rounded" style="margin-left:100px;">Comments</h2>
+</div>
+<div class="container" style="margin-left:120px;">
+
+    {% for c in comment %}
+        <div class="alert alert-light  border rounded">
+            <p>{{ c.post_comment }}</p>
+        </div>
+    {% endfor %}
+
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="pagination">
+    <span class="step-links">
+        {% if post.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ post.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post.number }} of {{ post.paginator.num_pages }}.
+        </span>
+
+        {% if post.has_next %}
+            <a href="?page={{ post.next_page_number }}">next</a>
+            <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}
+
+
+
+{% block footer %}
+{% endblock %}
