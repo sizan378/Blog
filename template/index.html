@@ -12,13 +12,13 @@
 <div class="container">
     <div class="row mt-5">
         {% for p in post %}
-         <div class=" col-lg-3 col-md-3 col-sm-12">
+         <div class=" col-lg-3 col-md-3 col-sm-12 shadow">
              <div class="card" style="width: 250px; height:350px;">
                  <a href="{{ p.get_single_url }}"><img src="{{ p.image.url }}" class="card-img-top" alt="Image"></a>
                  <div class="card-body">
                      <a href="{{ p.get_single_url }}"><h5 class="">{{ p.title }}</h5></a>
-                     <a href="{% url 'blog:topic' name=p.category.name %}"><h5 class="">{{ p.category.name }}</h5></a>
-                     <h3><a href="{{ p.get_author_url }}">{{ p.article_author.name }}</a></h3>
+                     <a href="{% url 'blog:topic' name=p.category.name %}"><p class="">Category:{{ p.category.name }} <span><a href="{{ p.get_author_url }}"><i>Author:{{ p.article_author.name }}</i></a></span></p></a>
+                     
                      <p>{{ p.posted_on }}</p>
                  </div>
              </div>
