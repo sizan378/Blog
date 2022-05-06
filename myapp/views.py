@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
-from .form import  createForm,createAuthor,commnetFrom,categoryForm,registerUser
+from .form import  createForm,createAuthor,commnetFrom,categoryForm,registerUser,CustomerRegistrationForm
 from django.contrib import messages
 from django.views import View
 from django.contrib.sites.shortcuts import get_current_site
@@ -140,7 +140,7 @@ def getDelete(request, id):
     return redirect('blog:profile')
 
 def getRegister(request):
-    form=registerUser(request.POST or None)
+    form=CustomerRegistrationForm(request.POST or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.is_active=False
