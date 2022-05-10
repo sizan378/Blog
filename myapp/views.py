@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
-from .form import  createForm,createAuthor,commnetFrom,categoryForm,registerUser,CustomerRegistrationForm
+from .form import  createForm,createAuthor,commnetFrom,categoryForm,CustomerRegistrationForm
 from django.contrib import messages
 from django.views import View
 from django.contrib.sites.shortcuts import get_current_site
@@ -75,20 +75,20 @@ def getTopic(request,name):
     return render(request,'category.html',{"post":post,"cat":cat})
 
 
-def getLogin(request):
-    if request.user.is_authenticated:
-        return redirect('blog:index')
-    else:
-        if request.method =="POST":
-            username=request.POST.get('username')
-            password=request.POST.get('password')
-            auth=authenticate(username=username,password=password)
-            if auth is not None:
-                login(request,auth)
-                return redirect('blog:index')
-            else:
-                messages.error(request, 'Username or Password wrong!😭😭😭😭😭')
-    return render(request,'login.html')
+# def getLogin(request):
+#     if request.user.is_authenticated:
+#         return redirect('blog:index')
+#     else:
+#         if request.method =="POST":
+#             username=request.POST.get('username')
+#             password=request.POST.get('password')
+#             auth=authenticate(username=username,password=password)
+#             if auth is not None:
+#                 login(request,auth)
+#                 return redirect('blog:index')
+#             else:
+#                 messages.error(request, 'Username or Password wrong!😭😭😭😭😭')
+#     return render(request,'login.html')
 
 def Logout(request):
     logout(request)

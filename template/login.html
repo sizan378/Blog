@@ -21,7 +21,7 @@
             {% endif %}
             <form action="" method="POST">
                 {% csrf_token %}
-               <div class="form-group">
+               <!-- <div class="form-group">
                 <label for="exampleInputusername">User Name</label>
                 <input type="text" name="username" class="form-control" id="exampleInputusername" placeholder="User Name">
                  </div>
@@ -30,7 +30,14 @@
                 <label for="exampleInputpassword">Password</label>
                 <input type="password" name="password" class="form-control" id="exampleInputpassword" placeholder="Password">
 
-                 </div>
+                 </div> -->
+                 {% for fm in form %}
+                    <div class="form-group">
+                        {{fm.label_tag}}{{fm}} <small class="text-denger">
+                            {{fm.errors|striptags}}
+                        </small><br>
+                    </div>
+                {% endfor %}
 
                 <div class="form-group">
 
